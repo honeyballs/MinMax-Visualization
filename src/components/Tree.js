@@ -3,7 +3,8 @@ import { Row } from './Row';
 
 export const Tree = (props) => {
     return (
-        <div className="rootDiv">
+        <div className="tree">
+            <h2>Game tree</h2>
             {props.tree.map((element, position) => 
                 <Row key={position} 
                     options={element}

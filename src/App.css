@@ -23,12 +23,35 @@
   to { transform: rotate(360deg); }
 }
 
-.rootDiv {
+
+h1 {
   text-align: center;
 }
 
+button {
+  margin-top: 10px;
+}
+
+.settings {
+  float: left;
+  border: 3px solid grey;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 15%;
+}
+
+.tree {
+  text-align: center;
+  float: left;
+  border: 3px solid grey;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
 .row {
-  width: 1000px;
+  width: 100%;
   margin: 0 auto;
   display: inline-block;
 }
