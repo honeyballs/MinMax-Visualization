@@ -8,9 +8,9 @@ const setClassName = (id, rowNr, optionNr, player) => {
     console.log({generatedId, id})
     if(id === generatedId) {
         if(player === 1) {
-            return classNameActiveMax
+            return `${classNameInactive} ${classNameActiveMax}`
         } else {
-            return classNameActiveMin
+            return `${classNameInactive} ${classNameActiveMin}`
         }
     } else {
         return classNameInactive

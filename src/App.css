@@ -41,7 +41,25 @@ button {
   width: 15%;
 }
 
+.status {
+  border: 3px solid grey;
+  border-radius: 5px;
+  width: 10%;
+  float: left;
+  padding: 10px;
+  margin: 10px;
+}
+
+.Maximizer {
+  color: red;
+}
+
+.Minimizer {
+  color: blue;
+}
+
 .tree {
+  width: 67%;
   text-align: center;
   float: left;
   border: 3px solid grey;
@@ -53,29 +71,24 @@ button {
 .row {
   width: 100%;
   margin: 0 auto;
-  display: inline-block;
 }
 
 .option {
-  background: green;
+  background: white;
+  border: 2px solid grey;
+  border-radius: 25px;
   margin: 10px;
   width: 50px;
   height: 50px;
   text-align: center;
   line-height: 50px;
-  color: white;
-  float: left;
+  color: black;
+  display: inline-block;
 }
 
 .optionMax {
   background: red;
-  margin: 10px;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
   color: white;
-  float: left;
 }
 
 .optionMin {
@@ -86,5 +99,5 @@ button {
   text-align: center;
   line-height: 50px;
   color: white;
-  float: left;
+  display: inline-block;
 }

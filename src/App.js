@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import { generateId } from "./lib/treeHelper";
 import { Tree } from "./components/Tree";
-import {Settings} from "./components/Settings";
+import { Settings } from "./components/Settings";
+import { Status } from "./components/Status";
 
 class App extends Component {
 
@@ -12,6 +13,8 @@ class App extends Component {
       maxOptions: 2,
       currentOption: 2,
       currentPlayer: 1,
+      maximizerValue: -1000,
+      minimizerValue: 1000,
       tree: [
         [{ id: 11, value: 3 }, { id: 12, value: 7 }],
         [
@@ -77,6 +80,11 @@ class App extends Component {
           currentDepth={this.state.currentDepth}
           currentOption={this.state.currentOption}
           currentPlayer={this.state.currentPlayer}
+        />
+        <Status 
+          player={this.state.currentPlayer} 
+          maximizerValue={this.state.maximizerValue} 
+          minimizerValue={this.state.minimizerValue}
         />
       </div>
     );
