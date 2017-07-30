@@ -5,7 +5,6 @@ const setClassName = (id, rowNr, optionNr, player) => {
     const classNameActiveMax = "optionMax"
     const classNameActiveMin = "optionMin"
     const generatedId = rowNr * 10 + optionNr
-    console.log({generatedId, id})
     if(id === generatedId) {
         if(player === 1) {
             return `${classNameInactive} ${classNameActiveMax}`

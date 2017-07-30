@@ -1,76 +1,65 @@
 import React, { Component } from "react";
 import "./App.css";
-import { generateId } from "./lib/treeHelper";
+import { generateTree } from "./lib/treeHelper";
 import { Tree } from "./components/Tree";
 import { Settings } from "./components/Settings";
 import { Status } from "./components/Status";
 
 class App extends Component {
-
   state = {
-      maxDepth: 3,
-      currentDepth: 3,
-      maxOptions: 2,
-      currentOption: 2,
-      currentPlayer: 1,
-      maximizerValue: -1000,
-      minimizerValue: 1000,
-      tree: [
-        [{ id: 11, value: 3 }, { id: 12, value: 7 }],
-        [
-          { id: 21, value: 5 },
-          { id: 22, value: 1 },
-          { id: 23, value: 2 },
-          { id: 24, value: 6 }
-        ],
-        [
-          { id: 31, value: 2 },
-          { id: 32, value: 9 },
-          { id: 33, value: 3 },
-          { id: 34, value: 5 },
-          { id: 35, value: 5 },
-          { id: 36, value: 1 },
-          { id: 37, value: 7 },
-          { id: 38, value: 8 }
-        ]
-      ]
-    };
+    maxDepth: 3,
+    currentDepth: 0,
+    maxOptions: 2,
+    currentOption: 0,
+    currentPlayer: 1,
+    maximizerValue: -1000,
+    minimizerValue: 1000,
+    tree: []
+  };
 
-  handleMaxDepthChange = (evt) => {
-    this.setState({
-      maxDepth: evt.target.value
-    })
+ 
+  //initialize the tree with default options
+  componentWillMount() {
+    generateTree(this.state.maxDepth, this.state.maxOptions, this.setTree)
   }
-
-  handleMaxOptionsChange = (evt) => {
-    this.setState({
-      maxOptions: evt.target.value
-    })
-  }
-
-  /*
-  render() {
-    return (
-        <div className="rootDiv">
-          { this.state.tree.map( (element, position) => {
-            return ( <div key={generateId()} className="row">{
-            element.map( (element) => {
-              return <div key={generateId()} className="option">{element.value}</div>
-            })}
-            </div>
-            )
-          })}
-        </div>
-
+ 
+  //set the max depth and update the tree accordingly
+  handleMaxDepthChange = evt => {
+    this.setState(
+      {
+        maxDepth: evt.target.value
+      },
+      () => {
+        generateTree(this.state.maxDepth, this.state.maxOptions, this.setTree)
+      }
     );
-  } */
+  };
+
+  //set the max options and update the tree accordingly
+  handleMaxOptionsChange = evt => {
+    this.setState(
+      {
+        maxOptions: evt.target.value
+      },
+      () => {
+        generateTree(this.state.maxDepth, this.state.maxOptions, this.setTree)
+      }
+    );
+  };
+
+  //callback to set the tree state to a new tree
+  setTree = tree => {
+    this.setState({
+      tree: tree
+    });
+  };
 
   render() {
     return (
       <div className="app-div">
         <h1>MinMax Visualization</h1>
-        <Settings 
-          maxDepth={this.state.maxDepth} 
+        <Settings
+          maxDepth={this.state.maxDepth}
           onChangeDepth={this.handleMaxDepthChange}
           maxOptions={this.state.maxOptions}
           onChangeOptions={this.handleMaxOptionsChange}
@@ -81,9 +70,9 @@ class App extends Component {
           currentOption={this.state.currentOption}
           currentPlayer={this.state.currentPlayer}
         />
-        <Status 
-          player={this.state.currentPlayer} 
-          maximizerValue={this.state.maximizerValue} 
+        <Status
+          player={this.state.currentPlayer}
+          maximizerValue={this.state.maximizerValue}
           minimizerValue={this.state.minimizerValue}
         />
       </div>
