@@ -8,7 +8,7 @@ export const Settings = (props) => {
             <h2>Settings</h2>
             <DepthSetting maxDepth={props.maxDepth} onChange={props.onChangeDepth}/>
             <OptionSetting maxOptions={props.maxOptions} onChange={props.onChangeOptions} />
-            <button>Start MinMax</button>
+            <button onClick={props.startMinMax}>Start MinMax</button>
         </div>
     )
 }

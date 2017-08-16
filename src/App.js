@@ -4,6 +4,7 @@ import { generateTree } from "./lib/treeHelper";
 import { Tree } from "./components/Tree";
 import { Settings } from "./components/Settings";
 import { Status } from "./components/Status";
+import MinMax from "./components/MinMax";
 
 class App extends Component {
   state = {
@@ -11,46 +12,25 @@ class App extends Component {
     currentDepth: 0,
     maxOptions: 2,
     currentOption: 0,
+    startingPlayer: 1,
     currentPlayer: 1,
     maximizerValue: -1000,
     minimizerValue: 1000,
-    tree: []
+    tree: [],
+    savedId: 0
   };
 
- 
-  //initialize the tree with default options
-  componentWillMount() {
-    generateTree(this.state.maxDepth, this.state.maxOptions, this.setTree)
-  }
- 
   //set the max depth and update the tree accordingly
   handleMaxDepthChange = evt => {
-    this.setState(
-      {
-        maxDepth: evt.target.value
-      },
-      () => {
-        generateTree(this.state.maxDepth, this.state.maxOptions, this.setTree)
-      }
-    );
+    this.setState({
+      maxDepth: evt.target.value
+    });
   };
 
   //set the max options and update the tree accordingly
   handleMaxOptionsChange = evt => {
-    this.setState(
-      {
-        maxOptions: evt.target.value
-      },
-      () => {
-        generateTree(this.state.maxDepth, this.state.maxOptions, this.setTree)
-      }
-    );
-  };
-
-  //callback to set the tree state to a new tree
-  setTree = tree => {
     this.setState({
-      tree: tree
+      maxOptions: evt.target.value
     });
   };
 
@@ -63,12 +43,12 @@ class App extends Component {
           onChangeDepth={this.handleMaxDepthChange}
           maxOptions={this.state.maxOptions}
           onChangeOptions={this.handleMaxOptionsChange}
+          startMinMax={this.startMinMax}
         />
-        <Tree
-          tree={this.state.tree}
-          currentDepth={this.state.currentDepth}
-          currentOption={this.state.currentOption}
-          currentPlayer={this.state.currentPlayer}
+        <MinMax
+          maxDepth={this.state.maxDepth}
+          maxOptions={this.state.maxOptions}
+          startingPlayer={this.state.startingPlayer}
         />
         <Status
           player={this.state.currentPlayer}
