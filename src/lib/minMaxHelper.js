@@ -16,9 +16,11 @@ export const generateOptions = (depth, maxOptions, index) => {
 //insert options into the tree
 export const insertNewOptions = (tree, options, depth) => {
   var tempRow = tree[depth];
+  // console.log({tree, options, depth, tempRow});
   //add the options to the array
   tempRow.push(options);
-  //var updatedRow = [...tempRow, options];
+  // var updatedRow = [...tempRow, options];
+  // console.log('newRow', updatedRow);
   //update the tree with the new row
   var updatedTree = [
     ...tree.slice(0, depth),

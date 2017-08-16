@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
+
 import { Tree } from "./Tree";
 import {
   generateOptions,
@@ -11,9 +13,6 @@ import {
 class MinMax extends Component {
   state = {
     tree: [],
-    maxDepth: this.props.maxDepth,
-    maxOptions: this.props.maxOptions,
-    startingPlayer: this.props.startingPlayer,
     currentPlayer: this.props.startingPlayer,
     currentMaxValue: -1000,
     currentMinValue: 1000,
@@ -22,40 +21,20 @@ class MinMax extends Component {
     savedId: 0
   };
 
-  //update the state when new props are received
-  //select in settings only returns string values which we have to parse
-  componentWillReceiveProps(nextProps) {
-    console.log("receiving");
-    if (this.state.maxDepth !== nextProps.maxDepth) {
-      this.setState({ maxDepth: parseInt(nextProps.maxDepth) });
-    }
-    if (this.state.maxOptions !== nextProps.maxOptions) {
-      this.setState({ maxOptions: parseInt(nextProps.maxOptions) });
-    }
-    if (this.state.startingPlayer !== nextProps.startingPlayer) {
-      this.setState({
-        startingPlayer: nextProps.startingPlayer,
-        currentPlayer: nextProps.startingPlayer
-      });
-    }
-  }
-
   startMinMax = () => {
     var tree = [];
-    for (var i = 0; i <= this.state.maxDepth; i++) {
+    for (var i = 0; i <= this.props.maxDepth; i++) {
       tree = [...tree, []];
     }
     //call the algorithm as callback to guarantee the state to be set
     this.setState({ tree: tree }, () => {
-      var savedId = this.state.savedId;
-      var maxDepth = this.state.maxDepth;
       var evaluation = this.min(-1, 0, 1);
     });
   };
 
   //maximizer
   max = (player, depth, index) => {
-    if (depth === this.state.maxDepth + 1) {
+    if (depth === this.props.maxDepth + 1) {
       return evaluate();
     }
     var max = -1000;
@@ -64,7 +43,7 @@ class MinMax extends Component {
     if (depth === 0) {
       options = generateOptions(depth, 1, index);
     } else {
-      options = generateOptions(depth, this.state.maxOptions, index);
+      options = generateOptions(depth, this.props.maxOptions, index);
     }
     //get the values and set the values for the options accordingly.
     //insert the finished options into the tree
@@ -79,15 +58,13 @@ class MinMax extends Component {
       }
     }
     var updatedTree = insertNewOptions(this.state.tree, updatedOptions, depth);
-    setTimeout(() => {
-      this.setState({ tree: updatedTree });
-    }, 1000);
+    this.setState({ tree: updatedTree });
     return max;
   };
 
   //minimizer
   min = (player, depth, index) => {
-    if (depth === this.state.maxDepth + 1) {
+    if (depth === this.props.maxDepth + 1) {
       return evaluate();
     }
     var min = 1000;
@@ -96,7 +73,7 @@ class MinMax extends Component {
     if (depth === 0) {
       options = generateOptions(depth, 1, index);
     } else {
-      options = generateOptions(depth, this.state.maxOptions, index);
+      options = generateOptions(depth, this.props.maxOptions, index);
     }
     //get the values and set the values for the options accordingly.
     //insert the finished options into the tree
@@ -111,9 +88,7 @@ class MinMax extends Component {
       }
     }
     var updatedTree = insertNewOptions(this.state.tree, updatedOptions, depth);
-    setTimeout(() => {
-      this.setState({ tree: updatedTree });
-    }, 1000);
+    this.setState({ tree: updatedTree });
     return min;
   };
 
@@ -121,6 +96,7 @@ class MinMax extends Component {
     return (
       <div className="minmax-tree">
         <h2>Game tree</h2>
+        {JSON.stringify(this.state.tree, null, 2)}
         <Tree
           tree={this.state.tree}
           currentDepth={this.state.currentDepth}
@@ -133,4 +109,6 @@ class MinMax extends Component {
   }
 }
 
-export default MinMax;
+const enhance = connect((state) => state.settings)
+
+export default enhance(MinMax);
