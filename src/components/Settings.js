@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {setMaxDepth, setMaxOptions} from '../redux'
 
 const Settings = (props) => {
-    console.log(props);
     return(
         <div className="settings">
             <h2>Settings</h2>

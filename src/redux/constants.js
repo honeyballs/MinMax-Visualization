@@ -1,3 +1,9 @@
 export const SET_MAX_DEPTH = 'SET_MAX_DEPTH'
 
 export const SET_MAX_OPTIONS = 'SET_MAX_OPTIONS'
+
+export const SET_TREE = 'SET_GAME_TREE'
+
+export const UPDATE_OPTION = 'UPDATE_OPTION'
+
+export const  INSERT_OPTIONS_INTO_TREE = 'INSERT_OPTIONS_INTO_TREE'
