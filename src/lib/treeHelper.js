@@ -1,8 +1,6 @@
-export const generateId = () => Math.floor(Math.random() * 100000);
 
 //build a tree the size of the user settings
-export const generateTree = (maxDepth, maxOptions, callback) => {
-  var tree = []
+export const generateTree = (tree, maxDepth, maxOptions) => {
   for (var depth = 1; depth <= maxDepth; depth++) {
     var options = []
     for (var option = 1; option <= Math.pow(maxOptions, depth); option++) {
@@ -14,6 +12,5 @@ export const generateTree = (maxDepth, maxOptions, callback) => {
     }
     tree.push(options) 
   }
-  console.log({ tree }, maxDepth, maxOptions)
-  callback(tree)
+  return tree;
 };
