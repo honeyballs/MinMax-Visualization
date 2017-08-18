@@ -3,7 +3,8 @@ import {
   SET_MAX_OPTIONS,
   SET_TREE,
   UPDATE_OPTION,
-  INSERT_OPTIONS_INTO_TREE
+  INSERT_OPTIONS_INTO_TREE,
+  CHANGE_PLAYER
 } from "./constants";
 
 export const setMaxDepth = maxDepth => ({
@@ -52,3 +53,11 @@ export const insertOptionsIntoTree = (tree, depth, options) => {
     payload: updatedTree
   };
 };
+
+export const changePlayer = (player) => {
+  const newPlayer = -player
+  return {
+    type: CHANGE_PLAYER,
+    payload: newPlayer
+  }
+}

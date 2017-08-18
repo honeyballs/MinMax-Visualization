@@ -1,0 +1,16 @@
+slider
+
+google slider-monitor react
+google redux devtools react
+
+packages sind installiert
+npm install
+
+beim start von minmax redux cache löschen (minmax reducer)
+
+farbliche hinterlegung der reihen nach maximizer und minimizer
+darüberliegende optionen mittig
+größenänderung der kreise
+
+option zum ändern des anfangsspielers
+status wieder anzeigen (umzug auf redux)
