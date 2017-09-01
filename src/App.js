@@ -14,13 +14,15 @@ class App extends Component {
       <Provider store={store}>
       <div className="app-div">
         <h1>MinMax Visualization</h1>
-        <Settings />
-        <MinMax />
-        {/* <Status
-          player={this.state.currentPlayer}
-          maximizerValue={this.state.maximizerValue}
-          minimizerValue={this.state.minimizerValue}
-        /> */}
+        <div className="content-container">
+          <Settings />
+          <MinMax />
+          {/* <Status
+            player={this.state.currentPlayer}
+            maximizerValue={this.state.maximizerValue}
+            minimizerValue={this.state.minimizerValue}
+          /> */}
+        </div>
       </div>
       </Provider>
     );

@@ -10,7 +10,7 @@ const Settings = (props) => {
             <h2>Settings</h2>
             <DepthSetting maxDepth={props.maxDepth} onChange={props.onChangeDepth}/>
             <OptionSetting maxOptions={props.maxOptions} onChange={props.onChangeOptions} />
-            <div>Starting Player: {props.startingPlayer}</div>
+            <div className="player-label">Starting Player: {props.startingPlayer}</div>
             <button onClick={props.startMinMax}>Start MinMax</button>
         </div>
     )
