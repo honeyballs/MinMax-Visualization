@@ -5,6 +5,7 @@ import  Status  from "./components/Status";
 import MinMax from "./components/MinMax";
 import store from './redux';
 import { Provider } from 'react-redux';
+import DevTools from './components/DevTools';
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
       <Provider store={store}>
       <div className="app-div">
         <h1>MinMax Visualization</h1>
+        <DevTools />
         <div className="content-container">
           <Settings />
           <MinMax />
