@@ -1,26 +1,16 @@
 import React from 'react';
-import {DepthSetting} from './DepthSetting';
-import {OptionSetting} from './OptionSetting';
 import {connect} from 'react-redux';
-import {setMaxDepth, setMaxOptions} from '../redux'
 
-const Settings = (props) => {
+const PlayerInfo = (props) => {
     return(
-        <div className="settings">
-            <h2>Settings</h2>
-            <DepthSetting maxDepth={props.maxDepth} onChange={props.onChangeDepth}/>
-            <OptionSetting maxOptions={props.maxOptions} onChange={props.onChangeOptions} />
-            <div className="player-label">Starting Player: {props.startingPlayer}</div>
-            <button onClick={props.startMinMax}>Start MinMax</button>
+        <div className="playerinfo">
+            <h2>Player Info</h2>
+            <div className="Aktuell am Zug">Actual Player </div>
         </div>
     )
 }
 
-const mapDispatchToProps = {
-    onChangeDepth: setMaxDepth, // onChangeDepth: (maxDepth) => setMaxDepth(maxDepth)
-    onChangeOptions: setMaxOptions,
-}
 
-const enhance = connect((state) => state.settings , mapDispatchToProps)
+const enhance = connect()
 
-export default enhance(Settings);
+export default enhance(PlayerInfo);

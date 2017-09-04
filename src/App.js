@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Settings from "./components/Settings";
+import PlayerInfo from "./components/PlayerInfo";
 import  Status  from "./components/Status";
 import MinMax from "./components/MinMax";
 import store from './redux';
@@ -24,6 +25,7 @@ class App extends Component {
             maximizerValue={this.state.maximizerValue}
             minimizerValue={this.state.minimizerValue}
           /> */}
+          <PlayerInfo />
         </div>
       </div>
       </Provider>
