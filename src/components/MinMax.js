@@ -4,6 +4,8 @@ import { setTree, updateOption, changePlayer } from "../redux";
 import { generateTree } from "../lib/treeHelper";
 import { Tree } from "./Tree";
 import { evaluate } from "../lib/minMaxHelper";
+import Instructions from "./Instructions";
+
 class MinMax extends Component {
   //minMaxTree = [];
 
@@ -195,16 +197,24 @@ class MinMax extends Component {
     return done;
   }; */
 
-  render() {
-    return (
-      <div className="minmax-tree">
-        <h2>Game tree</h2>
-        <Tree
+  instructionsOrTree = () => {
+    if (this.props.tree != undefined && this.props.tree.length > 0) {
+      return <Tree
           tree={this.props.tree}
           currentDepth={this.props.currentDepth}
           currentOption={this.props.currentOption}
           currentPlayer={this.props.currentPlayer}
         />
+    } else {
+      return <Instructions />
+    }
+  }
+
+  render() {
+    return (
+      <div className="minmax-tree">
+        <h2>Game tree</h2>
+        {this.instructionsOrTree()}
         <button onClick={this.startMinMax}>Start</button>
       </div>
     );
