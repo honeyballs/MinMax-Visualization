@@ -7,7 +7,6 @@ export const OptionSetting = (props) => {
             <select value={props.maxOptions} onChange={(evt) => props.onChange(parseInt(evt.target.value))}>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
-                <option value={4}>4</option>
             </select>
         </div>
     )

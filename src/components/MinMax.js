@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setTree, updateOption, changePlayer } from "../redux";
 import { generateTree } from "../lib/treeHelper";
-import { Tree } from "./Tree";
+import Tree from "./Tree/Tree"
 import { evaluate } from "../lib/minMaxHelper";
 import Instructions from "./Instructions";
 
@@ -201,9 +201,10 @@ class MinMax extends Component {
     if (this.props.tree != undefined && this.props.tree.length > 0) {
       return <Tree
           tree={this.props.tree}
-          currentDepth={this.props.currentDepth}
-          currentOption={this.props.currentOption}
-          currentPlayer={this.props.currentPlayer}
+          maxDepth={this.props.maxDepth}
+          maxOptions={this.props.maxOptions}
+          width={1000}
+          height={400}
         />
     } else {
       return <Instructions />
