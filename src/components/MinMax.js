@@ -7,17 +7,20 @@ import { evaluate } from "../lib/minMaxHelper";
 import Instructions from "./Instructions";
 
 class MinMax extends Component {
-  //minMaxTree = [];
+
+  //Define an Object to keep the size of the tree. 
+  //Only updated when the algorithm is started and the tree is generated.
+  treeSize = {
+    depth: 0,
+    options: 0
+  }
 
   startMinMax = () => {
-    //initialize the tree filled by the algorithm
-    /*this.minMaxTree = []
-    for (var i = 0; i <= this.props.maxDepth; i++) {
-      this.minMaxTree = [...this.minMaxTree, []];
-    }*/
-    //generate the tree to display
+    //Set the display variables
+    this.treeSize = { depth: this.props.maxDepth, options: this.props.maxOptions }
+    //Generate the tree to display
     var displayTree = [];
-    //add the starting point manually. afterwards the options are created in the loop
+    //Add the starting point manually. Afterwards the options are created in the generateTree function.
     const startPoint = [{ id: 1, value: 0 }];
     displayTree.push(startPoint);
     displayTree = generateTree(
@@ -25,22 +28,20 @@ class MinMax extends Component {
       this.props.maxDepth,
       this.props.maxOptions
     );
-    //map the display tree to the state
+    //Map the display tree to the state
     this.props.setTree(displayTree);
-
+    //Initialize an array with 0's
+    //This array is used to count how often the algorithm is called at one depth
     var iterationCounter = [];
     for (var i = 0; i <= this.props.maxDepth; i++) {
       iterationCounter[i] = 0;
     }
-
+    //The timeout makes sure that the tree is initialized before we try to update it in the algorithm.
     setTimeout(() => {
+      //Start the algorithm
       var evaluation = this.max(1, 1, iterationCounter);
-      //set the starting point value
-      //this.minMaxTree[0].push(evaluation);
-      console.log(this.minMaxTree);
-      //this.animateState();
-      //this.animateStateRealistic();
-      //fetch the option object from the displayed tree and create an updated option with the minMax value
+      //Set the starting point value
+      //Fetch the option object from the displayed tree and create an updated option with the minMax value
       const optionObj = this.props.tree[0][0];
       const updatedOption = {
         ...optionObj,
@@ -51,39 +52,35 @@ class MinMax extends Component {
     }, 2000);
   };
 
-  //maximizer
+  //Maximizer
   max = (player, depth, iterationCounter) => {
     if (depth === this.props.maxDepth + 1) {
       return evaluate();
     }
     var max = -1000;
-
-    //we keep track on the iteration number on a specific depth so we can determine the indizes of the options we need to update
+    //We keep track on the iteration number on a specific depth so we can determine the indizes of the options we need to update
     iterationCounter[depth] += this.props.maxOptions;
-    //the indizes need to be determined before the loop that starts further iterations
-    //because the count will be updated in these iterations and we won't get the correct nr
+    //The indizes need to be determined before the loop that starts further recursions
+    //Because the count will be updated in these iterations and we won't get the correct index anymore
     var optionIndizes = [];
     var loopCounter = this.props.maxOptions - 1;
     for (var o = 0; o < this.props.maxOptions; o++) {
       optionIndizes[loopCounter] = iterationCounter[depth] - o;
       loopCounter--;
     }
-
-    //the recursion of the algorithm
+    //Recursion of the algorithm
     for (var i = 1; i <= this.props.maxOptions; i++) {
       var value = this.min(-player, depth + 1, iterationCounter);
-      //insert the values into the minMaxTree
-      //this.minMaxTree[depth].push(value);
       if (value > max) {
         max = value;
       }
-      //fetch the option object from the displayed tree and create an updated option with the minMax value
+      //Fetch the option object from the displayed tree and create an updated option with the minMax value
       const optionObj = this.props.tree[depth][optionIndizes[i - 1] - 1];
       const updatedOption = {
         ...optionObj,
         value: value
       };
-      //update the displayed tree
+      //Update the displayed tree
       this.props.updateOption(
         this.props.tree,
         depth,
@@ -95,16 +92,16 @@ class MinMax extends Component {
     return max;
   };
 
-  //minimizer
+  //Minimizer
   min = (player, depth, iterationCounter) => {
     if (depth === this.props.maxDepth + 1) {
       return evaluate();
     }
     var min = 1000;
-    //we keep track on the iteration number on a specific depth so we can determine the indizes of the options we need to update
+    //We keep track on the iteration number on a specific depth so we can determine the indizes of the options we need to update
     iterationCounter[depth] += this.props.maxOptions;
-    //the indizes need to be determined before the loop that starts further iterations
-    //because the count will be updated in these iterations and we won't get the correct nr
+    //The indizes need to be determined before the loop that starts further iterations
+    //Because the count will be updated in these iterations and we won't get the correct nr
     var optionIndizes = [];
     var loopCounter = this.props.maxOptions - 1;
     for (var o = 0; o < this.props.maxOptions; o++) {
@@ -114,18 +111,16 @@ class MinMax extends Component {
 
     for (var i = 1; i <= this.props.maxOptions; i++) {
       var value = this.max(-player, depth + 1, iterationCounter);
-      //insert the values into the minMaxTree
-      //this.minMaxTree[depth].push(value);
       if (value < min) {
         min = value;
       }
-      //fetch the option object from the displayed tree and create an updated option with the minMax value
+      //Fetch the option object from the displayed tree and create an updated option with the minMax value
       const optionObj = this.props.tree[depth][optionIndizes[i - 1] - 1];
       const updatedOption = {
         ...optionObj,
         value: value
       };
-      //update the displayed tree
+      //Update the displayed tree
       this.props.updateOption(
         this.props.tree,
         depth,
@@ -137,73 +132,14 @@ class MinMax extends Component {
     return min;
   };
 
-  //start a realistic animation of the algorithm using recursion
-  /*animateStateRealistic = optionOfBreak => {
-    var iterationCounter = [];
-    for (var i = 0; i <= this.props.maxDepth; i++) {
-      iterationCounter[i] = 0;
-    }
-    var done = this.recursiveAnimation(1, iterationCounter);
-    if (done) {
-      //fetch the option object from the displayed tree and create an updated option with the minMax value
-      const optionObj = this.props.tree[0][0];
-      const updatedOption = {
-        ...optionObj,
-        value: this.minMaxTree[0][0]
-      };
-      //update the displayed tree
-      this.props.updateOption(
-        this.props.tree,
-        0,
-        updatedOption,
-        0
-      );
-    }
-  };
-
-  //imitate the algorithm to get a realistic animation
-  recursiveAnimation = (depth, iterationCounter) => {
-    if (depth === this.props.maxDepth + 1) {
-      return true;
-    }
-    var done = false;
-    //we keep track on the iteration number on a specific depth so we can determine the indizes of the options we need to update
-    iterationCounter[depth] += this.props.maxOptions;
-    //the indizes need to be determined before the loop that starts further iterations 
-    //because the count will be updated in these iterations and we won't get the correct nr
-    var optionIndizes = [];
-    var loopCounter = this.props.maxOptions -1
-    for (var o = 0; o < this.props.maxOptions; o++) {
-      optionIndizes[loopCounter] = iterationCounter[depth] - o;
-      loopCounter--
-    }
-    //call the recursive function again for further depths
-    for (var i = 0; i < this.props.maxOptions; i++) {
-      done = this.recursiveAnimation(depth + 1, iterationCounter);
-      //fetch the option object from the displayed tree and create an updated option with the minMax value
-      const optionObj = this.props.tree[depth][optionIndizes[i] - 1];
-      const updatedOption = {
-        ...optionObj,
-        value: this.minMaxTree[depth][optionIndizes[i] - 1]
-      };
-      //update the displayed tree
-      this.props.updateOption(
-        this.props.tree,
-        depth,
-        updatedOption,
-        optionIndizes[i] - 1
-      );
-    }
-    return done;
-  }; */
-
+  //If the tree is not yet generated we display instructions on how to use this tool.
   instructionsOrTree = () => {
-    if (this.props.tree != undefined && this.props.tree.length > 0) {
+    if (this.props.tree !== undefined && this.props.tree.length > 0) {
       return <Tree
           tree={this.props.tree}
-          maxDepth={this.props.maxDepth}
-          maxOptions={this.props.maxOptions}
-          width={1000}
+          maxDepth={this.treeSize.depth}
+          maxOptions={this.treeSize.options}
+          width={1400}
           height={400}
         />
     } else {
@@ -222,6 +158,7 @@ class MinMax extends Component {
   }
 }
 
+//Redux
 const mapDispatchToProps = {
   setTree: setTree,
   updateOption: updateOption,

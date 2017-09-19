@@ -25,49 +25,33 @@ const convertData = (tree, maxDepth, maxOptions) => {
             //Just edit the top level object
             if (rowIndex === 0) {
                 rootObject = {...rootObject, name: object.value}
-            }
-            //Just insert the next objects 
-            else if (rowIndex === 1){
+            } else {
                 var treeObj = {
                     name: object.value,
                     children: []
                 }
-                rootObject.children.push(treeObj);
-            } 
-            //Switch the children after the maxOptions amount of objects was added
-            else if (rowIndex === 2){
-                if(index % maxOptions === 0) {
-                    indexToInsert++;
-                }
-                var treeObj = {
-                    name: object.value,
-                    children: []
-                }
-                rootObject.children[indexToInsert].children.push(treeObj)
-            } 
-            //Same as above but we also have to switch branches one level above after maxOptions^2 has been added
-            else if (rowIndex === 3) {
-               if(index % maxOptions === 0) {
-                    indexToInsert++;
-                    console.log({indexToInsert})
-                }
-                var treeObj = {
-                    name: object.value,
-                    children: []
-                }
-                rootObject.children[indexToInsertParent].children[indexToInsert].children.push(treeObj)
-                insertionCounter++;
-                if (insertionCounter === (maxOptions * maxOptions)) {
-                        indexToInsert = -1
-                        indexToInsertParent++;
-                        insertionCounter = 0;
-                        console.log({indexToInsertParent})
+                //Just insert the next objects 
+                if (rowIndex === 1) {
+                    rootObject.children.push(treeObj);
+                } else {
+                    //Switch the children after the maxOptions amount of objects was added
+                    if(index % maxOptions === 0) {
+                        indexToInsert++;
                     }
-                
-                //console.log(rootObject.children[0].children[0].children)
-
-                
-            } 
+                    if (rowIndex === 2) {
+                        rootObject.children[indexToInsert].children.push(treeObj)
+                    } else {
+                        rootObject.children[indexToInsertParent].children[indexToInsert].children.push(treeObj)
+                        //Switch branches one level above after maxOptions^2 has been added
+                        insertionCounter++;
+                        if (insertionCounter === (maxOptions * maxOptions)) {
+                            indexToInsert = -1
+                            indexToInsertParent++;
+                            insertionCounter = 0;
+                        }
+                    }
+                }
+            }
         })
     })    
     console.log({rootObject})

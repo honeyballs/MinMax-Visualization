@@ -2,8 +2,8 @@ import React from 'react';
 import { Group } from '@vx/group';
 
 const Node = props => {
-    const width = 40;
-    const height = 20;
+    const width = 60;
+    const height = 60;
     return(
         <Group top={props.node.y} left={props.node.x}>
             {props.node.depth % 2 !== 0 && 
@@ -18,14 +18,15 @@ const Node = props => {
             }
             {props.node.depth % 2 === 0 &&
                 <circle
-                    r={12}
+                    r={30}
                     fill="white"
                     stroke={"red"}
                 />
             }
             <text
                 dy={".33em"}
-                fontSize={9}
+                fontSize={20}
+                fontWeight={700}
                 fontFamily="Arial"
                 textAnchor={"middle"}
                 style={{ pointerEvents: "none" }}
