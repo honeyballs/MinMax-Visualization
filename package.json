@@ -2,6 +2,7 @@
   "name": "min_max_visual",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://hosting.iem.thm.de/user/ybls31/min-max-visualization",
   "dependencies": {
     "@vx/gradient": "0.0.136",
     "@vx/group": "0.0.136",
