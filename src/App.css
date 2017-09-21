@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+
+
 .App {
   text-align: center;
 }
@@ -16,6 +20,7 @@
 
 .App-intro {
   font-size: large;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 @keyframes App-logo-spin {
@@ -30,12 +35,14 @@ body
 
 h1 {
   text-align: center;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 h2
 {
   text-align: center;
   padding: 0 10px;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 button {
@@ -46,6 +53,7 @@ button {
   background: darkcyan;
   color: white;
   border: 0;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 .content-container
@@ -64,6 +72,7 @@ button {
   margin: 10px;
   width: 15%;
   box-shadow: 3px 11px 24px 0px #888888;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 .status {
@@ -73,6 +82,7 @@ button {
   float: left;
   padding: 10px;
   margin: 10px;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 .Maximizer {
@@ -98,8 +108,9 @@ button {
 }
 
 .instructions {
-  text-align: left;
+  text-align: center;
   padding: 20px;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 .tree {
@@ -167,6 +178,7 @@ select {
   color: white;
   font-size: 16px;
   height: 28px;
+  font-family: 'Indie Flower', sans-serif;
 }
 
 

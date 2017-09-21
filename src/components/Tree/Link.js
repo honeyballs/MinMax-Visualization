@@ -6,7 +6,7 @@ const Link = props => {
         <LinkVertical
             data={props.link}
             stroke="black"
-            strokeWidth="1"
+            strokeWidth="3"
             strokeOpacity={0.5}
             fill="none"
         />
