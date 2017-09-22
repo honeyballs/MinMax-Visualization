@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   currentPlayer: 1,
   tree: [],
   maxValue: -1000,
-  minValue: 1000
+  minValue: 1000,
+  currentValue: 0
 };
 
 export default (minMaxState = INITIAL_STATE, action) => {
@@ -20,12 +21,13 @@ export default (minMaxState = INITIAL_STATE, action) => {
     case UPDATE_OPTION:
       return {
         ...minMaxState,
-        tree: action.payload
+        tree: action.payload.tree
       };
     case INSERT_OPTIONS_INTO_TREE:
       return {
           ...minMaxState,
-          tree: action.payload
+          tree: action.payload.tree,
+          currentValue: action.payload.value
       };
       case CHANGE_PLAYER:
         return {

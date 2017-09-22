@@ -34,9 +34,10 @@ export const updateOption = (tree, depth, option, indexOfUpdate) => {
         updatedRow,
         ...tree.slice(depth + 1)
     ]
+    const updatedValue = option.value;
     return {
     type: UPDATE_OPTION,
-    payload: updatedTree
+    payload: {tree: updatedTree, value: updatedValue }
   };
 };
 
