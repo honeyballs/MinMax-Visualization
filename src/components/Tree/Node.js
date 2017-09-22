@@ -13,19 +13,18 @@ const Node = props => {
                     height={height}
                     y={-height / 2}
                     x={-width / 2}
-                    fill="#006699"
-                    stroke={props.node.data.active ?"black" : "#006699" }
-                    strokeWidth="3"
-                    strokeOpacity={0.5}
+                    fill="#008ED3"
+                    stroke={props.node.data.active ?"#006699" : "#008ED3" }
+                    strokeWidth={props.node.data.active ?"3px" : "0px" }
                 />
             }
             {props.node.depth % 2 === 0 &&
                 <circle
                     r={20}
                     fill="#FF9999"
-                    stroke={props.node.data.active ?"black" : "#FF9999" }
-                    strokeWidth="3"
-                    strokeOpacity={0.5}
+                    stroke={props.node.data.active ?"#B23535" : "#FF9999" }
+                    strokeWidth={props.node.data.active ?"3px" : "0px" }
+                    //strokeOpacity={0.5}
                 />
             }
             <text

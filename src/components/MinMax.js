@@ -50,7 +50,7 @@ class MinMax extends Component {
       };
       //update the displayed tree
       this.props.updateOption(this.props.tree, 0, updatedOption, 0);
-    }, 2000);
+    }, 300);
   };
 
   //Maximizer
@@ -142,7 +142,7 @@ class MinMax extends Component {
           tree={this.props.tree}
           maxDepth={this.treeSize.depth}
           maxOptions={this.treeSize.options}
-          width={1400}
+          width={1200}
           height={400}
         />
     } else {
