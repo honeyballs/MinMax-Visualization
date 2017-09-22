@@ -56,7 +56,7 @@ export const insertOptionsIntoTree = (tree, depth, options) => {
 };
 
 export const changePlayer = (player) => {
-  const newPlayer = -player
+  const newPlayer = player
   return {
     type: CHANGE_PLAYER,
     payload: newPlayer

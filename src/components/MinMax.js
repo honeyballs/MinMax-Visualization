@@ -21,7 +21,7 @@ class MinMax extends Component {
     //Generate the tree to display
     var displayTree = [];
     //Add the starting point manually. Afterwards the options are created in the generateTree function.
-    const startPoint = [{ id: 1, value: 0 }];
+    const startPoint = [{ id: 1, value: 0, active: false }];
     displayTree.push(startPoint);
     displayTree = generateTree(
       displayTree,
@@ -45,7 +45,8 @@ class MinMax extends Component {
       const optionObj = this.props.tree[0][0];
       const updatedOption = {
         ...optionObj,
-        value: evaluation
+        value: evaluation,
+        active: true
       };
       //update the displayed tree
       this.props.updateOption(this.props.tree, 0, updatedOption, 0);
@@ -78,7 +79,8 @@ class MinMax extends Component {
       const optionObj = this.props.tree[depth][optionIndizes[i - 1] - 1];
       const updatedOption = {
         ...optionObj,
-        value: value
+        value: value,
+        active: true
       };
       //Update the displayed tree
       this.props.updateOption(
@@ -118,7 +120,8 @@ class MinMax extends Component {
       const optionObj = this.props.tree[depth][optionIndizes[i - 1] - 1];
       const updatedOption = {
         ...optionObj,
-        value: value
+        value: value,
+        active: true
       };
       //Update the displayed tree
       this.props.updateOption(

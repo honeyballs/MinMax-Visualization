@@ -24,11 +24,12 @@ const convertData = (tree, maxDepth, maxOptions) => {
         row.map( (object, index) => {
             //Just edit the top level object
             if (rowIndex === 0) {
-                rootObject = {...rootObject, name: object.value}
+                rootObject = {...rootObject, name: object.value, active: object.active}
             } else {
                 var treeObj = {
                     name: object.value,
-                    children: []
+                    children: [],
+                    active: object.active
                 }
                 //Just insert the next objects 
                 if (rowIndex === 1) {

@@ -6,7 +6,8 @@ export const generateTree = (tree, maxDepth, maxOptions) => {
     for (var option = 1; option <= Math.pow(maxOptions, depth); option++) {
       var obj = {
         id: depth * 10 + option,
-        value: 0
+        value: 0,
+        active: false
       }
       options.push(obj)
     }

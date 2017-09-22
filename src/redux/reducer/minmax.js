@@ -4,7 +4,7 @@ import { SET_TREE, UPDATE_OPTION, INSERT_OPTIONS_INTO_TREE, CHANGE_PLAYER } from
 const INITIAL_STATE = {
   currentDepth: 0,
   currentOption: 0,
-  currentPlayer: 1,
+  currentPlayer: -1,
   tree: [],
   maxValue: -1000,
   minValue: 1000,
@@ -33,7 +33,7 @@ export default (minMaxState = INITIAL_STATE, action) => {
       case CHANGE_PLAYER:
         return {
           ...minMaxState,
-          currentPlayer: action.payload
+          currentPlayer: -action.payload
         }
     default:
       return minMaxState;

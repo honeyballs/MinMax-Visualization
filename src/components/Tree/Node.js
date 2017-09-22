@@ -14,14 +14,18 @@ const Node = props => {
                     y={-height / 2}
                     x={-width / 2}
                     fill="#006699"
-                    stroke={"#006699"}
+                    stroke={props.node.data.active ?"black" : "#006699" }
+                    strokeWidth="3"
+                    strokeOpacity={0.5}
                 />
             }
             {props.node.depth % 2 === 0 &&
                 <circle
                     r={20}
                     fill="#FF9999"
-                    stroke={"#FF9999"}
+                    stroke={props.node.data.active ?"black" : "#FF9999" }
+                    strokeWidth="3"
+                    strokeOpacity={0.5}
                 />
             }
             <text
