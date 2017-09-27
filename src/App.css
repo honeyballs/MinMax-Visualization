@@ -56,6 +56,14 @@ button {
   font-family: 'Indie Flower', sans-serif;
 }
 
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background: #006F6F;
+}
+
 .content-container
 {
   display: flex;
