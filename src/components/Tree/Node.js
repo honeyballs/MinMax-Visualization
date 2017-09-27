@@ -31,7 +31,7 @@ const Node = props => {
                 dy={".33em"}
                 fontSize={20}
                 fontWeight={700}
-                fontFamily="Indie Flower"
+                fontFamily="Montserrat"
                 textAnchor={"middle"}
                 style={{ pointerEvents: "none" }}
                 fill={"white"}
